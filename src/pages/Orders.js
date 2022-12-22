@@ -41,7 +41,7 @@ const Orders = () => {
   const orderState = useSelector((state) => state.auth.orders);
 
   const data1 = [];
-  for (let i = 0; i < orderState.length; i++) {
+  /*   for (let i = 0; i < orderState.length; i++) {
     data1.push({
       key: i + 1,
       name: orderState[i].orderby.firstname,
@@ -65,13 +65,11 @@ const Orders = () => {
         </>
       ),
     });
-  }
+  } */
   return (
     <div>
       <h3 className="mb-4 title">Orders</h3>
-      <div>
-        <Table columns={columns} dataSource={data1} />
-      </div>
+      <div>{/*  <Table columns={columns} dataSource={data1} /> */}</div>
     </div>
   );
 };

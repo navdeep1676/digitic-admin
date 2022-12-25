@@ -1,18 +1,18 @@
 import { React, useEffect } from "react";
 import CustomInput from "../components/CustomInput";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { createBrand } from "../features/brand/brandSlice";
+import { createBrand, resetState } from "../features/brand/brandSlice";
 
 let schema = yup.object().shape({
   title: yup.string().required("Brand Name is Required"),
 });
 const Addbrand = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const newBrand = useSelector((state) => state.brand);
   const { isSuccess, isError, isLoading, createdBrand } = newBrand;
 
@@ -33,14 +33,14 @@ const Addbrand = () => {
       dispatch(createBrand(values));
       formik.resetForm();
       setTimeout(() => {
-        navigate("/admin/list-brand");
+        dispatch(resetState());
       }, 3000);
     },
   });
 
   return (
     <div>
-      <h3 className="mb-4 title">Add Brand</h3>
+      <h3 className="mb-4 title"> Brand</h3>
       <div>
         <form action="" onSubmit={formik.handleSubmit}>
           <CustomInput

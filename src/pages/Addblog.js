@@ -9,7 +9,7 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { createBlogs } from "../features/blogs/blogSlice";
+import { createBlogs, resetState } from "../features/blogs/blogSlice";
 import { getCategories } from "../features/bcategory/bcategorySlice";
 
 let schema = yup.object().shape({
@@ -62,7 +62,7 @@ const Addblog = () => {
       dispatch(createBlogs(values));
       formik.resetForm();
       setTimeout(() => {
-        navigate("/admin/list-product");
+        dispatch(resetState());
       }, 3000);
     },
   });
